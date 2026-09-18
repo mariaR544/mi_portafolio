@@ -280,6 +280,107 @@ button:focus-visible {
   color: var(--accent-primary);
 }
 
+.navbar-controles {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 0.75rem;
+}
+
+.btn-idioma-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Botón de cambio de idioma */
+.btn-idioma {
+  height: 36px;
+  padding: 0 0.6rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-button-sec);
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-idioma:hover {
+  background-color: var(--accent-primary-soft);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+/* Burbuja de sugerencia de idioma */
+.tooltip-idioma {
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background-color: rgba(75, 22, 76, 0.92);
+  color: #ffffff;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 14px rgba(75, 22, 76, 0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+  z-index: 105;
+}
+
+.tooltip-idioma::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 5px 5px 5px;
+  border-style: solid;
+  border-color: transparent transparent rgba(75, 22, 76, 0.92) transparent;
+}
+
+.tooltip-idioma.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  animation: tooltipBounce 2.5s infinite ease-in-out;
+}
+
+@keyframes tooltipBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(3px);
+  }
+}
+
+[data-theme="dark"] .tooltip-idioma {
+  background-color: rgba(221, 136, 207, 0.92);
+  color: #1a0a1b;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .tooltip-idioma::before {
+  border-color: transparent transparent rgba(221, 136, 207, 0.92) transparent;
+}
+
 /* Botón de cambio de tema (Sol / Luna) */
 .btn-tema {
   width: 36px;
@@ -293,7 +394,6 @@ button:focus-visible {
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
-  margin-left: 0.75rem;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 
